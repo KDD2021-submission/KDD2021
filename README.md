@@ -17,7 +17,7 @@ Recommendation data format: (no space around tab)
 user_id \t item_id  
 
 In ATM-GCN folder, run the command for pre-training  
-python run.py -dataset movielens -score_func transe -opn sub -gamma 9 -hid_drop 0.1 -init_dim 60  
+python run.py -data movielens -score_func transe -opn sub -gamma 9 -hid_drop 0.1 -init_dim 60  
 The learned node embeddings will be in the 'checkpoints' folder.
 
 Then in CF folder, run the following code for recommendation  
