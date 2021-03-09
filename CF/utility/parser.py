@@ -15,8 +15,10 @@ def parse_args():
                         help='Input data path.')
     parser.add_argument('--proj_path', nargs='?', default='',
                         help='Project path.')
-    parser.add_argument('--load_path', nargs='?', default='',
-                        help='Load checkpoint path.')
+    parser.add_argument('--load_user_path', nargs='?', default='',
+                        help='Load user checkpoint path.')
+    parser.add_argument('--load_item_path', nargs='?', default='',
+                        help='Load item checkpoint path.')
 
     parser.add_argument('--dataset', nargs='?', default='gowalla',
                         help='Choose a dataset from {gowalla, yelp2018, amazon-book}')
