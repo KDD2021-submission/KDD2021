@@ -45,22 +45,31 @@ class NGCF(nn.Module):
     def init_weight(self):
         # xavier init
         initializer = nn.init.xavier_uniform_
-        path = os.path.join('../checkpoints', self.load_path)
-        state = torch.load(path)
-        state_dict = state['state_dict']
-        init_embed = state_dict['init_embed']
+        item_path = os.path.join('../checkpoints', self.load_item_path)
+        item_state = torch.load(item_path)
+        item_state_dict = item_state['state_dict']
+        item_init_embed = item_state_dict['init_embed']
 
-        f_id = open('../checkpoints/id_'+self.dataset+'.pkl','rb')
-        id2ent = pickle.load(f_id)
-        item_init_embed = initializer(torch.empty(self.n_item, self.emb_size))
-        for n, embed in enumerate(init_embed):
-            item_init_embed[int(id2ent[n])] = embed
+        f_id_item = open('../checkpoints/id_item_'+self.dataset+'.pkl','rb')
+        item_id2ent = pickle.load(f_id_item)
+        new_item_init_embed = initializer(torch.empty(self.n_item, self.emb_size))
+        for n, embed in enumerate(item_init_embed):
+            new_item_init_embed[int(item_id2ent[n])] = embed
 
+        user_path = os.path.join('../checkpoints', self.load_user_path)
+        user_state = torch.load(user_path)
+        user_state_dict = user_state['state_dict']
+        user_init_embed = user_state_dict['init_embed']
+
+        f_id_user = open('../checkpoints/id_user_'+self.dataset+'.pkl','rb')
+        user_id2ent = pickle.load(f_id_user)
+        new_user_init_embed = initializer(torch.empty(self.n_user, self.emb_size))
+        for n, embed in enumerate(user_init_embed):
+            new_user_init_embed[int(user_id2ent[n])] = embed
 
         embedding_dict = nn.ParameterDict({
-            'user_emb': nn.Parameter(initializer(torch.empty(self.n_user,
-                                                 self.emb_size))),
-            'item_emb': nn.Parameter(item_init_embed)
+            'user_emb': nn.Parameter(new_user_init_embed),
+            'item_emb': nn.Parameter(new_item_init_embed)
         })
 
         weight_dict = nn.ParameterDict()
