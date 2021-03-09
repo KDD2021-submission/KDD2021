@@ -425,7 +425,7 @@ if __name__ == '__main__':
 
 	parser.add_argument('-name',		default='testrun',					help='Set run name for saving/restoring models')
 	parser.add_argument('-data',		dest='dataset',         default='movielens',            help='Dataset to use, default: movielens')
-	parser.add_argument('-graph',		dest='graph',         default='item',            help='graph used in pre-training')
+	parser.add_argument('-graph',		dest='graph',           default='item',                 help='graph used in pre-training')
 	parser.add_argument('-model',		dest='model',		default='compgcn',		help='Model Name')
 	parser.add_argument('-score_func',	dest='score_func',	default='conve',		help='Score Function for Link prediction')
 	parser.add_argument('-opn',             dest='opn',             default='corr',                 help='Composition Operation to be used in CompGCN')
