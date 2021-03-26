@@ -3,7 +3,7 @@
 This is the source code of ATM-GCN and the recommendation GCN model. 
 
 Requirements:  
-Pytorch 10.1  
+Pytorch 1.4.0  
 python 3.7  
 CUDA 10.1  
 
